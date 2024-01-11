@@ -1,0 +1,31 @@
+describe("Navigate Commands", ()=>{
+    it("Go and Forword Commands", ()=>{
+        cy.visit("https://demo.guru99.com/test/newtours/")
+        cy.title().should('eq', "Welcome: Mercury Tours")
+        cy.get('body > div:nth-child(5) > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td:nth-child(2) > a')
+        .click();
+        cy.wait(5000)
+        cy.title().should('eq', 'Register: Mercury Tours')
+        cy.go('back')
+        cy.wait(5000)
+        cy.title().should('eq', 'Welcome: Mercury Tours')
+        cy.go('forward')
+        cy.wait(5000)
+        cy.title().should('eq', 'Register: Mercury Tours')
+    })
+    it.only("Go and Forword Commands using number", ()=>{
+        cy.visit("https://demo.guru99.com/test/newtours/")
+        cy.title().should('eq', "Welcome: Mercury Tours")
+        cy.get('body > div:nth-child(5) > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td:nth-child(2) > a')
+        .click();
+        cy.wait(5000)
+        cy.title().should('eq', 'Register: Mercury Tours')
+        cy.go(-1)
+        cy.wait(5000)
+        cy.title().should('eq', 'Welcome: Mercury Tours')
+        cy.go(1)
+        cy.wait(5000)
+        cy.title().should('eq', 'Register: Mercury Tours')
+        cy.reload()
+    })
+})
